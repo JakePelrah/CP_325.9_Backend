@@ -20,21 +20,21 @@ const port = 3000;
 const app = express();
 
 // Middleware setup
-app.use(cors())
+app.use(cors({ origin: 'http://localhost:5173' }));
 app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 app.use(session({
   secret: process.env.SESSION_SECRET, // Secret for session encryption
   resave: false, // Prevent resaving unchanged sessions
   saveUninitialized: false, // Don't save uninitialized sessions
-  store: MongoStore.create({ 
+  store: MongoStore.create({
     mongoUrl: "mongodb://localhost:27017",
-    dbName:"lmd",
-   }),
+    dbName: "lmd",
+  }),
   // cookie: { secure: false } // Set secure cookies (change to true in production)
 }));
 app.use(passport.authenticate('session'));
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   var msgs = req.session.messages || []; // Get messages from session
   res.locals.messages = msgs; // Make messages available to views
   res.locals.hasMessages = !!msgs.length; // Boolean for message existence
