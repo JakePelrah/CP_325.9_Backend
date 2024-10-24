@@ -5,7 +5,7 @@ import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
 import cookieParser from 'cookie-parser';
-
+import MongoStore from 'connect-mongo';
 
 // Get the directory name of the current module
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -19,12 +19,10 @@ app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 app.use(express.static(path.join(__dirname, 'dist'))); // Serve static files from 'dist'
 
+
 // Configure session management
 app.use(session({
-//   store: new PgSession({
-//     pool, // Use the PostgreSQL connection pool
-//     tableName: 'session', // Specify the session table name
-//   }),
+  store: MongoStore.create({ mongoUrl: 'mongodb://localhost/lmd' }),
   secret: process.env.SESSION_SECRET, // Secret for session encryption
   resave: false, // Prevent resaving unchanged sessions
   saveUninitialized: false, // Don't save uninitialized sessions
@@ -32,7 +30,7 @@ app.use(session({
 }));
 
 // // Initialize passport session management
-// app.use(passport.authenticate('session'));
+app.use(passport.authenticate('session'));
 
 // // Middleware to manage session messages
 // app.use(function(req, res, next) {
@@ -43,11 +41,6 @@ app.use(session({
 //   next(); // Proceed to the next middleware
 // });
 
-// // Handle client-side routing, returning all requests to the app
-// app.get('*', (_req, res) => {
-//   console.log(res.locals); // Log local response variables
-//   res.sendFile(path.join(__dirname, 'dist', 'index.html')); // Send index.html for client-side routing
-// });
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
