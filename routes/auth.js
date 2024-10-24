@@ -19,7 +19,7 @@ passport.use(
       clientID: process.env["GOOGLE_CLIENT_ID"], // Google Client ID from environment variables
       clientSecret: process.env["GOOGLE_CLIENT_SECRET"], // Google Client Secret from environment variables
       callbackURL: "/oauth2/redirect/google", // URL to redirect after Google authentication
-      scope: ["profile", "https://www.googleapis.com/auth/calendar"], // Scopes for access
+      scope: ["profile"], // Scopes for access
       state: true, // Enable state parameter for security
     },
     async function (accessToken, refreshToken, profile, cb) {

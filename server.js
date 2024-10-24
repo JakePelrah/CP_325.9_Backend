@@ -14,6 +14,10 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const port = 3000;
 const app = express();
 
+// Import routes
+import { authRouter } from './routes/auth.js';
+
+
 // Middleware setup
 app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
@@ -31,6 +35,8 @@ app.use(session({
 
 // // Initialize passport session management
 app.use(passport.authenticate('session'));
+
+app.use('/', authRouter)
 
 // // Middleware to manage session messages
 // app.use(function(req, res, next) {
