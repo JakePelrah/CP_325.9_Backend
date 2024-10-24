@@ -23,13 +23,14 @@ passport.use(
       state: true, // Enable state parameter for security
     },
     async function (accessToken, refreshToken, profile, cb) {
+      console.log(accessToken, refreshToken, profile, )
       try {
         // Store the refresh token in the user's profile
         profile._json.refreshToken = refreshToken;
         const user = await findOrCreateUser(profile); // Find or create user in the database
 
         // Store access token for later use with Google APIs
-        user.accessToken = accessToken;
+        // user.accessToken = accessToken;
 
         // If no user found, return false
         if (!user) {
@@ -84,8 +85,8 @@ authRouter.get(
 authRouter.get(
   "/oauth2/redirect/google",
   passport.authenticate("google", {
-    successReturnToOrRedirect: "/profile", // Redirect to profile on success
-    failureRedirect: "/failure", // Redirect to failure page on error
+    successReturnToOrRedirect: "http://localhost:5173/map", // Redirect to profile on success
+    failureRedirect: "http://localhost:5173/map", // Redirect to failure page on error
   })
 );
 

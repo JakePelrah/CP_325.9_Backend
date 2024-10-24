@@ -35,12 +35,7 @@ export async function getFavorites(userId) {
   // return results
 }
 
-export async function getRoutes(accountId) {
-  // accountId = parseInt(accountId)
-  // const collection = db.collection('transactions')
-  // const results = collection.find({ accountId }).toArray()
-  // return results
-}
+
 
 ////////////////////////////////////// POST //////////////////////////////////////
 export async function postLandmark() {
@@ -71,22 +66,10 @@ export async function postFavorite() {
   // return results
 }
 
-export async function postRoute() {
-  // const transaction = {
-  //   accountId: parseInt(accountId),
-  //   transactionId: uuidv4(),
-  //   amount: Decimal128.fromString(amount),
-  //   category,
-  //   type,
-  //   created: new Date(),
-  // };
-  // const collection = db.collection('transactions')
-  // const results = collection.insertOne(transaction)
-  // return results
-}
+
 
 export async function findOrCreateUser(profile) {
-  console.log(profile)
+  // console.log(profile)
   // const collection = db.collection('user')
   // const results = collection.insertOne(transaction)
   // return results
@@ -118,13 +101,6 @@ export async function deleteFavorite(transactionId) {
   // const results = collection.deleteOne({ transactionId })
   // return results
 }
-
-export async function deleteRoute(transactionId) {
-  // const collection = db.collection('transactions')
-  // const results = collection.deleteOne({ transactionId })
-  // return results
-}
-
 
 
 
