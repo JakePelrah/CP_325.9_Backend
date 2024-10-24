@@ -85,7 +85,7 @@ authRouter.get(
   "/oauth2/redirect/google",
   passport.authenticate("google", {
     successReturnToOrRedirect: "http://localhost:5173/map", // Redirect to profile on success
-    failureRedirect: "http://localhost:5173/map", // Redirect to failure page on error
+    failureRedirect: "http://localhost:5173/", // Redirect to failure page on error
   })
 );
 
@@ -107,6 +107,5 @@ authRouter.post("/logout", function (req, res, next) {
  * This route checks if the user is logged in and returns user info if authenticated.
  */
 authRouter.get('/isLoggedIn', (req, res) => {
-  console.log(req)
   req.user ? res.send(req.user) : res.send({}); // Send user info or empty object
 });

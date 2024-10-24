@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import { MongoClient } from "mongodb";
+import { MongoClient, ObjectId } from "mongodb";
 dotenv.config()
 
 const client = new MongoClient(process.env.MONGO_CONNECTION_URL)
@@ -84,9 +84,19 @@ export async function postFavorite() {
 
 
 export async function findOrCreateUser(profile) {
-  const collection = db.collection('users')
-  const results = collection.insertOne(profile)
-  return results
+
+  // get users collection
+  const userCollection = db.collection('users')
+
+  // find user
+  let user = await userCollection.findOne({ id: profile.id })
+
+  if (!user) {
+    // create user
+    user = userCollection.insertOne(profile)
+    console.log('Creating new user.')
+  }
+  return user
 }
 
 ////////////////////////////////////// UPDATE //////////////////////////////////////
