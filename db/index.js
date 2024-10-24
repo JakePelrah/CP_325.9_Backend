@@ -13,6 +13,21 @@ try {
 
 let db = conn.db('lmd')
 
+/* Landmark
+{
+  title:'',
+  description:'',
+  category:'',
+  coords:{
+    lat:0,
+    lng:0},
+  created:new Date(),
+  websites:['',''],
+  related:[],
+  image_url:'',
+
+}
+    */
 
 ////////////////////////////////////// GET //////////////////////////////////////
 export async function getLandmarks() {
