@@ -1,30 +1,5 @@
-
-
-//   const { sub, refreshToken, given_name, family_name, picture } = profile._json;
-
-//   // set new refresh token on user if it exists
-//   let { rows } = await pool.query(
-//     "UPDATE google_profile SET refresh_token = $1 WHERE id = $2 RETURNING *",
-//     [refreshToken, sub]
-//   );
-//   let user = rows[0];
-
-//   // if user doesn't exist
-//   if (!user) {
-//     let { rows } = await pool.query(
-//       "INSERT INTO google_profile(id, refresh_token, first_name, last_name, picture) VALUES($1, $2, $3, $4, $5) RETURNING *",
-//       [sub, refreshToken, given_name, family_name, picture]
-//     );
-//     user = rows[0]
-//   }
-
-//   return user;
-// }
-
-
 import dotenv from 'dotenv'
-import { Decimal128, MongoClient } from "mongodb";
-// import { v4 as uuidv4 } from 'uuid'
+import { MongoClient } from "mongodb";
 dotenv.config()
 
 const client = new MongoClient(process.env.MONGO_CONNECTION_URL)
@@ -68,7 +43,7 @@ export async function getRoutes(accountId) {
 }
 
 ////////////////////////////////////// POST //////////////////////////////////////
-export async function postLandmark({ accountId, category, type, amount }) {
+export async function postLandmark() {
   // const transaction = {
   //   accountId: parseInt(accountId),
   //   transactionId: uuidv4(),
@@ -82,7 +57,7 @@ export async function postLandmark({ accountId, category, type, amount }) {
   // return results
 }
 
-export async function postFavorite({ accountId, category, type, amount }) {
+export async function postFavorite() {
   // const transaction = {
   //   accountId: parseInt(accountId),
   //   transactionId: uuidv4(),
@@ -96,7 +71,7 @@ export async function postFavorite({ accountId, category, type, amount }) {
   // return results
 }
 
-export async function postRoute({ accountId, category, type, amount }) {
+export async function postRoute() {
   // const transaction = {
   //   accountId: parseInt(accountId),
   //   transactionId: uuidv4(),

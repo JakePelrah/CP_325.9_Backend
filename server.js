@@ -38,15 +38,6 @@ app.use(passport.authenticate('session'));
 
 app.use('/', authRouter)
 
-// // Middleware to manage session messages
-// app.use(function(req, res, next) {
-//   var msgs = req.session.messages || []; // Get messages from session
-//   res.locals.messages = msgs; // Make messages available to views
-//   res.locals.hasMessages = !!msgs.length; // Boolean for message existence
-//   req.session.messages = []; // Clear messages after use
-//   next(); // Proceed to the next middleware
-// });
-
 
 // Start the server and listen on the specified port
 app.listen(port, () => {
