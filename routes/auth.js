@@ -23,14 +23,13 @@ passport.use(
       state: true, // Enable state parameter for security
     },
     async function (accessToken, refreshToken, profile, cb) {
-      console.log(accessToken, refreshToken, profile, )
       try {
         // Store the refresh token in the user's profile
         profile._json.refreshToken = refreshToken;
         const user = await findOrCreateUser(profile); // Find or create user in the database
 
         // Store access token for later use with Google APIs
-        // user.accessToken = accessToken;
+        user.accessToken = accessToken;
 
         // If no user found, return false
         if (!user) {
@@ -108,5 +107,6 @@ authRouter.post("/logout", function (req, res, next) {
  * This route checks if the user is logged in and returns user info if authenticated.
  */
 authRouter.get('/isLoggedIn', (req, res) => {
+  console.log(req)
   req.user ? res.send(req.user) : res.send({}); // Send user info or empty object
 });

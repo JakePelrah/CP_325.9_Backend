@@ -84,10 +84,9 @@ export async function postFavorite() {
 
 
 export async function findOrCreateUser(profile) {
-  // console.log(profile)
-  // const collection = db.collection('user')
-  // const results = collection.insertOne(transaction)
-  // return results
+  const collection = db.collection('users')
+  const results = collection.insertOne(profile)
+  return results
 }
 
 ////////////////////////////////////// UPDATE //////////////////////////////////////

@@ -1,6 +1,7 @@
 // Import necessary modules
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import cors from 'cors'
 import express from 'express';
 import passport from 'passport';
 import session from 'express-session';
@@ -19,6 +20,7 @@ import { authRouter } from './routes/auth.js';
 
 
 // Middleware setup
+app.use(cors())
 app.use(express.json()); // Parse JSON bodies
 app.use(cookieParser()); // Parse cookies
 app.use(express.static(path.join(__dirname, 'dist'))); // Serve static files from 'dist'
